@@ -11,11 +11,8 @@ public class SEO {
     private Path pathInFile1;
     private Path pathInFile2;
     private Path pathInFile3;
-
     private List<char[]> words = new ArrayList<>();
-
     private List<String> result = new ArrayList<>();
-
     private int firstIndex = 0;
     private int hitCount = 0;
 
@@ -26,7 +23,8 @@ public class SEO {
     }
 
     public void startAnalysis() {
-        List<String> textForAnalysis; //переименовать
+        System.out.println("Начинаю поиск...");
+        List<String> textForAnalysis;
         List<String> templates;
         try {
             textForAnalysis = Files.readAllLines(pathInFile1);
@@ -118,23 +116,16 @@ public class SEO {
 
     private boolean search(String str, String str2) {
         str2 = str2.substring(1, str2.length() - 1);
-        if (str.contains(str2)) {
-            return true;
-        } else {
-            return false;
-        }
+        return str.contains(str2);
     }
 
-    private boolean search(char[] word, char str, int n) {
-        int k = 0;
-        for (int i = 0; i < word.length; i++) {
-            if (word[i] == str)
-                k++;
+    private boolean search(char[] word, char str, int count) {
+        int counter = 0;
+        for (char c : word) {
+            if (c == str)
+                counter++;
         }
-        if (k >= n) {
-            return true;
-        }
-        return false;
+        return counter >= count;
     }
 }
 
